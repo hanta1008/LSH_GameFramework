@@ -57,7 +57,7 @@ iWindow::iWindow(int x, int y, int width, int height, int bits, const char* name
 	int pixelFormat = ChoosePixelFormat(hdc, &pfd);
 	SetPixelFormat(hdc, pixelFormat, &pfd);
 
-	/*위글 함수들은 OpenGL과 윈도우즈 API를 연결시키는 역할을 담당한다.*/
+	/* wgl 함수들은 OpenGL과 윈도우즈 API를 연결시키는 역할을 담당한다.*/
 	HGLRC hrc = wglCreateContext(hdc);	
 	wglMakeCurrent(hdc, hrc);
 

@@ -1,6 +1,13 @@
 #pragma once
 
+#include"iWindow.h"
+
+#include <gdiplus.h>
+#pragma comment(lib, "gdiplus")
+using namespace Gdiplus;
+
 #include "iType.h"
+
 
 // 게임마다 개발자가 설정하는 사이즈
 #define DEV_WIDTH 1280	
@@ -13,3 +20,7 @@ extern iSize monitorSize;		//모니터 사이즈
 extern iSize devSize;			//개발용 해상도
 extern iRect viewport;			//윈도우 창에서 사용되는 영역
 extern iSize wndSize;		// 윈도우 창 사이즈
+
+void loadLib();
+void freeLib();
+void initGdiplus();

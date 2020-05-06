@@ -98,7 +98,7 @@ bool loadApp()
 {
 	monitorSettings();
 
-	//loadLib();
+	loadLib();
 
 	int wndPosX = monitorSize.width / 2 - wndSize.width / 2;	//좌상단의 X위치
 	int wndPosY = monitorSize.height / 2 - wndSize.height/ 2;	//좌상단의 Y위치
