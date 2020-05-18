@@ -1,6 +1,6 @@
 #pragma once
 
-#include"iWindow.h"
+#include "iWindow.h"
 
 #include <gdiplus.h>
 #pragma comment(lib, "gdiplus")
@@ -23,4 +23,8 @@ extern iSize wndSize;		// 윈도우 창 사이즈
 
 void loadLib();
 void freeLib();
+typedef void(*DRAW_METHOD)(float);
+bool drawLib(HDC hDC, DRAW_METHOD method);
+void keyLib();
+
 void initGdiplus();

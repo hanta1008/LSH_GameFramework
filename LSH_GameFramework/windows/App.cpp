@@ -1,6 +1,7 @@
 #include "App.h"
 
 #include "iStd.h"
+#include "Game.h"
 
 WCHAR szWindowClass[20] = TEXT("LSH_Game");
 int win_border_width = 0, win_border_height = 0;
@@ -42,6 +43,8 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance_,
 		return 0;
 	}
 
+	loadGame();
+
 	runWnd = true;
 	MSG msg;
 	while (runWnd)
@@ -53,11 +56,10 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance_,
 		}
 		else
 		{
-			//if (drawLib(hDC, drawGame))
-			//{
-			//	drawCursor();
-			//	SwapBuffers(hDC);
-			//}
+			if (drawLib(g_hDC, drawGame))
+			{
+				SwapBuffers(g_hDC);
+			}
 		}
 	}
 }
@@ -67,6 +69,11 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	switch (message)
 	{
 	case WM_CREATE:
+		RECT rt0, rt1;
+		GetWindowRect(hWnd, &rt0);
+		GetClientRect(hWnd, &rt1);
+		win_border_width = (rt0.right - rt0.left) - (rt1.right - rt1.left);// 16 ( cxframe x2 )
+		win_border_height = (rt0.bottom - rt0.top) - (rt1.bottom - rt1.top);// 39 ( cycaption + cyframe x2 )
 		break;
 	case WM_DESTROY:
 		break;
@@ -107,8 +114,10 @@ bool loadApp()
 	iWindow* wnd = new iWindow(wndPosX, wndPosY, wndSize.width, wndSize.height, 32, className, false);
 	free(className);
 
+	initOpenGL();
+
 	ShowWindow(wnd->m_hWnd, SW_SHOW);// nCmdShow==SW_SHOWDEFAULT
-	SetForegroundWindow(wnd->m_hWnd);	//윈도우 포커스 및 최상위로 올리기
+	SetForegroundWindow(wnd->m_hWnd);//윈도우 포커스 및 최상위로 올리기
 	SetFocus(wnd->m_hWnd);
 
 	return true;
@@ -147,6 +156,11 @@ void resizeWindow(float width, float height)
 
 	wndSize.width = width + win_border_width;
 	wndSize.height = height + win_border_height;
+
+	/////////////////////////////
+	//	glViewport
+	/////////////////////////////
+	glViewport(viewport.origin.x, viewport.origin.y, wndSize.width, wndSize.height);
 }
 void monitorSettings()
 {

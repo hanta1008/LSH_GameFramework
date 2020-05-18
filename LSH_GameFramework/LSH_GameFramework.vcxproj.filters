@@ -54,6 +54,12 @@
     <ClInclude Include="windows\iWindow.h">
       <Filter>소스 파일\windows</Filter>
     </ClInclude>
+    <ClInclude Include="lib\iOpenGL.h">
+      <Filter>소스 파일\lib</Filter>
+    </ClInclude>
+    <ClInclude Include="Game\Game.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="windows\App.cpp">
@@ -79,6 +85,12 @@
     </ClCompile>
     <ClCompile Include="windows\iWindow.cpp">
       <Filter>소스 파일\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="lib\iOpenGL.cpp">
+      <Filter>소스 파일\lib</Filter>
+    </ClCompile>
+    <ClCompile Include="Game\Game.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

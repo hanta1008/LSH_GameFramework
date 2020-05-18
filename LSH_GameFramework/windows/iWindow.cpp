@@ -1,6 +1,8 @@
 #include "iWindow.h"
 
 HINSTANCE g_hInstance;
+HWND g_hWnd;
+HDC g_hDC;
 
 iWindow::iWindow(int x, int y, int width, int height, int bits, const char* name, bool fullscreen)
 {
@@ -103,8 +105,8 @@ iWindow::iWindow(int x, int y, int width, int height, int bits, const char* name
 #endif
 	////////////////////////////////////////////////////////////////////////////////////////////////////
 
-	m_hWnd = hwnd;
-	m_hDC = hdc;
+	m_hWnd = g_hWnd = hwnd;
+	m_hDC = g_hDC = hdc;
 	m_hRC = hrc;
 }
 iWindow::~iWindow()
